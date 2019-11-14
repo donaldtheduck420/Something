@@ -20,9 +20,9 @@ void Tankdrive::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void Tankdrive::Execute() {
-  double leftPow = Robot::m_oi->getLeftJoy->getY();
-  double rightPow = Robot::m_oi->getRightJoy->getY();
-  Robot::drive->tankDrive
+  double leftPow = Robot::m_oi->getLeftJoy()->GetY();
+  double rightPow = Robot::m_oi->getRightJoy()->GetY();
+  Robot::drive->tankDrive(leftPow,rightPow);
   }
 
 // Make this return true when this Command no longer needs to run execute()

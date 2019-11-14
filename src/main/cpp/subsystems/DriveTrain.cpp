@@ -6,7 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/DriveTrain.h"
-#import "iostream"
+#include "commands/Tankdrive.h"
+//#import "iostream"
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)), right(new TalonSRX(3)){}
 
@@ -16,7 +17,8 @@ void DriveTrain::tankDrive(double leftInput, double rightInput) {
   left->Set(ControlMode::PercentOutput, -leftInput);
   right->Set(ControlMode::PercentOutput, rightInput);
 
-  std::cout<<"leftPower"<<"rightPower"<<std::endl;
+
+  //std::cout<<"leftPower"<<"rightPower"<<std::endl;
 
 }
 
