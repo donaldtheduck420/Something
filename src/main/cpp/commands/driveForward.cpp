@@ -5,32 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/Tankdrive.h"
+#include "commands/driveForward.h"
+#include "subsystems/DriveTrain.cpp"
 #include "Robot.h"
 #include "OI.h"
 
-Tankdrive::Tankdrive() {
+driveForward::driveForward() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::drive());
+  setpoint = distance;
   Requires(Robot::drive);
 }
 
 // Called just before this Command runs the first time
-void Tankdrive::Initialize() {}
+void driveForward::Initialize() {
+  Robot::drive->resetEncoders();
+}
 
 // Called repeatedly when this Command is scheduled to run
-void Tankdrive::Execute() {
-  double leftPow = Robot::m_oi->getLeftJoy()->GetY();
-  double rightPow = Robot::m_oi->getRightJoy()->GetY();
-  Robot::drive->tankDrive(leftPow,rightPow);
+void driveForward::Execute() { // =0.5 is a default value to run if no arguement is given=
+  double leftPow=0.5;
+  double rightPow=0.5;
+  Robot::drive->tankDrive(leftPow, rightPow);
   }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Tankdrive::IsFinished() { return false; }
+
+bool driveForward::IsFinished() { 
+  return GetPosition() > setpoint;
+}
 
 // Called once after isFinished returns true
-void Tankdrive::End() {}
+void driveForward::End() 
+{
+    Robot::drive->tankDrive(0, 0);
+}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Tankdrive::Interrupted() {}
+void driveForward::Interrupted() {
+
+}

@@ -9,6 +9,7 @@
 #pragma once
 
 #include "frc/commands/Subsystem.h"
+#include "commands/driveForward.h"
 #include <ctre/Phoenix.h>
 
 
@@ -25,4 +26,6 @@ class DriveTrain : public frc::Subsystem {
   DriveTrain();
   void InitDefaultCommand() override;
   void tankDrive(double leftInput, double rightInput);
+  double getPosition();
+  void resetEncoders();
 };

@@ -15,9 +15,9 @@ OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)) {
 }
 
 Joystick* OI::getLeftJoy(){
-  return leftJoy;
+  //return leftJoy;
 }
 
 Joystick* OI::getRightJoy(){
-  return rightJoy;
+  //return rightJoy;
 }

@@ -9,9 +9,13 @@
 
 #include <frc/commands/Command.h>
 
-class Tankdrive : public frc::Command {
+class driveForward : public frc::Command {
+ private: 
+  double setpoint;
+  double distance;
+
  public:
-  Tankdrive();
+  driveForward(double distance);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

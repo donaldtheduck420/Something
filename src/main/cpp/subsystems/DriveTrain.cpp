@@ -6,12 +6,19 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/DriveTrain.h"
-#include "commands/Tankdrive.h"
-#import "iostream"
+#include "commands/driveForward.h"
+//#import "iostream"
 
 using namespace std;
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)), right(new TalonSRX(3)){}
+DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)), right(new TalonSRX(3)){
+  left->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
+  left->SetSelectedSensorPosition(0,0,10);
+  left->SetInverted(false);
+  right->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);
+  right->SetSelectedSensorPosition(0,0,10);
+  right->SetInverted(false);
+}
 
 void DriveTrain::tankDrive(double leftInput, double rightInput) {
   leftPower=leftInput;
@@ -20,16 +27,24 @@ void DriveTrain::tankDrive(double leftInput, double rightInput) {
   right->Set(ControlMode::PercentOutput, rightInput);
 
 
-  std::cout<<"leftPower"<<"rightPower"<<std::endl;
+  //std::cout<<"leftPower"<<"rightPower"<<std::endl;
 
 }
 
+double DriveTrain::getPosition(){
+  return (left->GetSelectedSensorPosition() + right->GetSelectedSensorPosition()) / 2;
+}
+
+void DriveTrain::resetEncoders(){
+  left->SetSelectedSensorPosition(0,0,10);
+  right->SetSelectedSensorPosition(0,0,10);
+}
 
 
 
 void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  SetDefaultCommand(new Tankdrive());
+ // SetDefaultCommand(new driveForward(double distance));
 }
 
 // Put methods for controlling this subsystem
