@@ -10,7 +10,7 @@
 #include "OI.h"
 
 
-driveForward::driveForward(double distance) {
+driveForward::driveForward(double distance) : Command("forwardDrive"), left(new TalonSRX(2)), right(new TalonSRX(3)){
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::drive());
   setpoint = distance;

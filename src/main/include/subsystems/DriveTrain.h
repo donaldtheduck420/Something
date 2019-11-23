@@ -9,7 +9,6 @@
 #pragma once
 
 #include "frc/commands/Subsystem.h"
-
 #include <ctre/Phoenix.h>
 
 
