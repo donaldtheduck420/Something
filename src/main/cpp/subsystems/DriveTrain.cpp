@@ -9,7 +9,7 @@
 #include "commands/driveForward.h"
 //#import "iostream"
 
-using namespace std;
+
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)), right(new TalonSRX(3)){
   left->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute);

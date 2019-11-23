@@ -8,11 +8,14 @@
 #pragma once
 
 #include <frc/commands/Command.h>
+#include <ctre/Phoenix.h>
 
 class driveForward : public frc::Command {
  private: 
   double setpoint;
   double distance;
+  TalonSRX* left;
+  TalonSRX* right;
 
  public:
   driveForward(double distance);

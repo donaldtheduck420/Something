@@ -4,13 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 #include "commands/driveForward.h"
-#include "subsystems/DriveTrain.cpp"
+#include "subsystems/DriveTrain.h"
 #include "Robot.h"
 #include "OI.h"
 
-driveForward::driveForward() {
+
+driveForward::driveForward(double distance) {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::drive());
   setpoint = distance;
@@ -32,7 +32,9 @@ void driveForward::Execute() { // =0.5 is a default value to run if no arguement
 // Make this return true when this Command no longer needs to run execute()
 
 bool driveForward::IsFinished() { 
-  return GetPosition() > setpoint;
+  if(((left->GetSelectedSensorPosition() + right->GetSelectedSensorPosition()) / 2) >= setpoint) {
+    return true;
+  };
 }
 
 // Called once after isFinished returns true
