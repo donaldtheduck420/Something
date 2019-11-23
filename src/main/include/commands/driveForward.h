@@ -13,7 +13,6 @@
 class driveForward : public frc::Command {
  private: 
   double setpoint;
-  double distance;
   TalonSRX* left;
   TalonSRX* right;
 
