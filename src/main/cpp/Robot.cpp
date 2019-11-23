@@ -80,10 +80,13 @@ void Robot::TeleopInit() {
   }
 }
 
-void Robot::TeleopPeriodic() { frc::Scheduler::GetInstance()->Run(); }
+void Robot::TeleopPeriodic() { 
+  frc::Scheduler::GetInstance()->Run();
+  drive->tankDrive(0.5, 0.5); 
+  }
 
 void Robot::TestPeriodic() {
-  drive->tankDrive(0.5, 0.5);
+  //drive->tankDrive(0.5, 0.5);
 }
 
 #ifndef RUNNING_FRC_TESTS
