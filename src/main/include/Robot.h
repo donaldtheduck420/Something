@@ -14,6 +14,7 @@
 
 #include "OI.h"
 #include "commands/ExampleCommand.h"
+#include "commands/driveForward.h"
 #include "commands/MyAutoCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/DriveTrain.h"
